@@ -38,8 +38,8 @@ if [ -f "/etc/xray/domain" ]; then
 echo "Script Already Installed"
 exit 0
 fi
-mkdir /var/lib/akbarstorevpn;
-echo "IP=" >> /var/lib/akbarstorevpn/ipvps.conf
+mkdir /var/lib/lakmalstorevpn;
+echo "IP=" >> /var/lib/lakmalstorevpn/ipvps.conf
 wget https://${lakmalvpn}/cf.sh && chmod +x cf.sh && ./cf.sh
 #install v2ray
 wget https://${lakmalvpnnnnnn}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
@@ -58,7 +58,7 @@ rm -f /root/ohp.sh
 cat <<EOF> /etc/systemd/system/autosett.service
 [Unit]
 Description=autosetting
-Documentation=https://t.me/Akbar218
+Documentation=https://t.me/SLboy1
 
 [Service]
 Type=oneshot

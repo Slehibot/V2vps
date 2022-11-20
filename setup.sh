@@ -22,10 +22,6 @@ LIGHT='\033[0;37m'
 lakmalvpn="raw.githubusercontent.com/Slehibot/V2vps/main/ssh"
 # Link Hosting Kalian Untuk Xray
 lakmalvpnnnnnn="raw.githubusercontent.com/Slehibot/V2vps/main/xray"
-# Link Hosting Kalian Untuk Ipsec
-lakmalvpnnnnnnn="raw.githubusercontent.com/Slehibot/V2vps/main/ipsec"
-# Link Hosting Kalian Untuk Ohp
-lakmalvpnnnnnnnnnn="raw.githubusercontent.com/Slehibot/V2vps/main/ohp"
 
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
@@ -45,16 +41,11 @@ wget https://${lakmalvpn}/cf.sh && chmod +x cf.sh && ./cf.sh
 wget https://${lakmalvpnnnnnn}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
 #install ssh ovpn
 wget https://${lakmalvpn}/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
-wget https://${lakmalvpnn}/sstp.sh && chmod +x sstp.sh && screen -S sstp ./sstp.sh
-# Ohp Server
-wget https://${lakmalvpnnnnnnnnnn}/ohp.sh && chmod +x ohp.sh && ./ohp.sh
+
 
 rm -f /root/ssh-vpn.sh
-rm -f /root/ins-xray.sh
-rm -f /root/ipsec.sh
 rm -f /root/set-br.sh
 rm -f /root/edu.sh
-rm -f /root/ohp.sh
 cat <<EOF> /etc/systemd/system/autosett.service
 [Unit]
 Description=autosetting

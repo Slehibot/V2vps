@@ -190,33 +190,6 @@ apt -y install squid3
 wget -O /etc/squid/squid.conf "https://${lakmalvpn}/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
-# Install SSLH
-apt -y install sslh
-rm -f /etc/default/sslh
-
-# Settings SSLH
-cat > /etc/default/sslh <<-END
-# Default options for sslh initscript
-# sourced by /etc/init.d/sslh
-
-# Disabled by default, to force yourself
-# to read the configuration:
-# - /usr/share/doc/sslh/README.Debian (quick start)
-# - /usr/share/doc/sslh/README, at "Configuration" section
-# - sslh(8) via "man sslh" for more configuration details.
-# Once configuration ready, you *must* set RUN to yes here
-# and try to start sslh (standalone mode only)
-
-RUN=yes
-
-# binary to use: forked (sslh) or single-thread (sslh-select) version
-# systemd users: don't forget to modify /lib/systemd/system/sslh.service
-DAEMON=/usr/sbin/sslh
-
-DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n"
-
-END
-
 # Restart Service SSLH
 service sslh restart
 systemctl restart sslh
@@ -290,7 +263,7 @@ cat > /etc/systemd/system/stunnel5.service << END
 [Unit]
 Description=Stunnel5 Service
 Documentation=https://stunnel.org
-Documentation=https://github.com/Akbar218
+Documentation=https://github.com/Slehibot
 After=syslog.target network-online.target
 
 [Service]
@@ -408,12 +381,9 @@ wget -O tendang "https://${lakmalvpn}/tendang.sh"
 wget -O clearlog "https://${lakmalvpn}/clearlog.sh"
 wget -O changeport "https://${lakmalvpn}/changeport.sh"
 wget -O portovpn "https://${lakmalvpn}/portovpn.sh"
-wget -O portwg "https://${lakmalvpn}/portwg.sh"
 wget -O porttrojan "https://${lakmalvpn}/porttrojan.sh"
-wget -O portsstp "https://${lakmalvpn}/portsstp.sh"
 wget -O portsquid "https://${lakmalvpn}/portsquid.sh"
 wget -O portvlm "https://${lakmalvpn}/portvlm.sh"
-wget -O wbmn "https://${lakmalvpn}/webmin.sh"
 wget -O xp "https://${lakmalvpn}/xp.sh"
 wget -O swapkvm "https://${lakmalvpn}/swapkvm.sh"
 wget -O addvmess "https://${lakmalvpnn}/addv2ray.sh"
@@ -429,24 +399,13 @@ wget -O renewvmess "https://${lakmalvpnn}/renewv2ray.sh"
 wget -O renewvless "https://${lakmalvpnn}/renewvless.sh"
 wget -O renewtrojan "https://${lakmalvpnn}/renewtrojan.sh"
 wget -O certv2ray "https://${lakmalvpnn}/certv2ray.sh"
-wget -O addtrgo "https://${lakmalvpnnn}/addtrgo.sh"
-wget -O deltrgo "https://${lakmalvpnnn}/deltrgo.sh"
-wget -O renewtrgo "https://${lakmalvpnnn}/renewtrgo.sh"
-wget -O cektrgo "https://${lakmalvpnnn}/cektrgo.sh"
 wget -O portsshnontls "https://raw.githubusercontent.com/Slehibot/V2vps/main/websocket/portsshnontls.sh"
 wget -O portsshws "https://raw.githubusercontent.com/Slehibot/V2vps/main/websocket/portsshws.sh"
 
 wget -O sshovpnmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/sshovpn.sh"
-wget -O l2tpmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/l2tpmenu.sh"
-wget -O pptpmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/pptpmenu.sh"
-wget -O sstpmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/sstpmenu.sh"
-wget -O wgmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/wgmenu.sh"
-wget -O ssmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/ssmenu.sh"
-wget -O ssrmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/ssrmenu.sh"
 wget -O vmessmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/vmessmenu.sh"
 wget -O vlessmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/vlessmenu.sh"
 wget -O trmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/trmenu.sh"
-wget -O trgomenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/trgomenu.sh"
 wget -O setmenu "https://raw.githubusercontent.com/Slehibot/V2vps/main/update/setmenu.sh"
 
 
@@ -454,16 +413,9 @@ chmod +x portsshnontls
 chmod +x portsshws
 
 chmod +x sshovpnmenu
-chmod +x l2tpmenu
-chmod +x pptpmenu
-chmod +x sstpmenu
-chmod +x wgmenu
-chmod +x ssmenu
-chmod +x ssrmenu
 chmod +x vmessmenu
 chmod +x vlessmenu
 chmod +x trmenu
-chmod +x trgomenu
 chmod +x setmenu
 
 chmod +x addhost
@@ -486,9 +438,7 @@ chmod +x renewssh
 chmod +x clearlog
 chmod +x changeport
 chmod +x portovpn
-chmod +x portwg
 chmod +x porttrojan
-chmod +x portsstp
 chmod +x portsquid
 chmod +x portvlm
 chmod +x wbmn
@@ -507,10 +457,6 @@ chmod +x renewvmess
 chmod +x renewvless
 chmod +x renewtrojan
 chmod +x certv2ray
-chmod +x addtrgo
-chmod +x deltrgo
-chmod +x renewtrgo
-chmod +x cektrgo
 echo "0 5 * * * root clearlog && reboot" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
 # remove unnecessary files
@@ -531,7 +477,6 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
-/etc/init.d/sslh restart
 /etc/init.d/stunnel5 restart
 /etc/init.d/vnstat restart
 /etc/init.d/fail2ban restart

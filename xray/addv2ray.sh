@@ -28,6 +28,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (Days) : " masaaktif
+user=SLVPN`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray-vmess-tls$/a\### '"$user $exp"'\
@@ -93,3 +94,26 @@ echo -e "========================="
 echo -e "Link No TLS : ${xrayv2ray2}"
 echo -e "========================="
 echo -e "Script By Lakmal Sandaru"
+echo -e ""
+echo -e ""
+echo -e ""
+echo -e "<br>======-XRAYS/VMESS-======"
+echo -e "<br>Remarks     : ${user}"
+echo -e "<br>IP/Host     : ${MYIP}"
+echo -e "<br>Address     : ${domain}"
+echo -e "<br>Port TLS    : ${tls}"
+echo -e "<br>Port No TLS : ${nontls}"
+echo -e "<br>User ID     : ${uuid}"
+echo -e "<br>Alter ID    : 0"
+echo -e "<br>Security    : auto"
+echo -e "<br>Network     : ws"
+echo -e "<br>Path        : /vmess/"
+echo -e "<br>Created     : $hariini"
+echo -e "<br>Expired     : $exp"
+echo -e "<br>========================="
+echo -e "<br>Link TLS    : ${xrayv2ray1}"
+echo -e "<br>========================="
+echo -e "<br>Link No TLS : ${xrayv2ray2}"
+echo -e "<br>========================="
+echo -e "<br>Script By Lakmal Sandaru"
+

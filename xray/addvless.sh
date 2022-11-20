@@ -13,7 +13,7 @@ LIGHT='\033[0;37m'
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
-IZIN=$( curl https://raw.githubusercontent.com/senowahyu62/perizinan/main/ipvps.txt | grep $MYIP )
+IZIN=$( curl https://raw.githubusercontent.com/Slehibot/SLv2ray/main/ipvps.txt | grep $MYIP )
 if [ $MYIP = $MYIP ]; then
 echo -e "${NC}${GREEN}Permission Accepted...${NC}"
 else
@@ -22,7 +22,7 @@ echo -e "${NC}${LIGHT}Please Contact Admin!!"
 exit 0
 fi
 clear
-source /var/lib/akbarstorevpn/ipvps.conf
+source /var/lib/lakmalstorevpn/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
@@ -42,6 +42,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (Days) : " masaaktif
+user=SLVPN`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray-vless-tls$/a\#### '"$user $exp"'\
@@ -53,6 +54,27 @@ xrayvless2="vless://${uuid}@${domain}:$nontls?path=/vless/&encryption=none&type=
 systemctl restart xray.service
 service cron restart
 clear
+echo -e ""
+echo -e "======-XRAYS/VLESS-======"
+echo -e "Remarks     : ${user}"
+echo -e "IP/Host     : ${MYIP}"
+echo -e "Address     : ${domain}"
+echo -e "Port TLS    : $tls"
+echo -e "Port No TLS : $nontls"
+echo -e "User ID     : ${uuid}"
+echo -e "Encryption  : none"
+echo -e "Network     : ws"
+echo -e "Path        : /vless/"
+echo -e "Created     : $hariini"
+echo -e "Expired     : $exp"
+echo -e "========================="
+echo -e "Link TLS    : ${xrayvless1}"
+echo -e "========================="
+echo -e "Link No TLS : ${xrayvless2}"
+echo -e "========================="
+echo -e "Script By Lakmal Sandaru"
+echo -e ""
+echo -e ""
 echo -e ""
 echo -e "======-XRAYS/VLESS-======"
 echo -e "Remarks     : ${user}"

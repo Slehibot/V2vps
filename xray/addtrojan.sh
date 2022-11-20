@@ -13,7 +13,7 @@ LIGHT='\033[0;37m'
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
-IZIN=$( curl https://raw.githubusercontent.com/vhsec/izin/main/ip.txt | grep $MYIP )
+IZIN=$( curl https://raw.githubusercontent.com/Slehibot/SLv2ray/main/ip.txt | grep $MYIP )
 if [ $MYIP = $MYIP ]; then
 echo -e "${NC}${GREEN}Permission Accepted...${NC}"
 else
@@ -22,7 +22,7 @@ echo -e "${NC}${LIGHT}Please Contact Admin!!"
 exit 0
 fi
 clear
-source /var/lib/akbarstorevpn/ipvps.conf
+source /var/lib/lakmalstorevpn/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
@@ -40,6 +40,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		fi
 	done
 read -p "Expired (Days) : " masaaktif
+user=SLVPN`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray-trojan$/a\#&# '"$user $exp"'\
@@ -61,3 +62,19 @@ echo -e "=========================="
 echo -e "Link TR  : ${trojanlink}"
 echo -e "=========================="
 echo -e "Script By Lakmal Sandaru"
+echo -e ""
+echo -e ""
+echo -e ""
+echo -e "<br>======-XRAYS/TROJAN-======"
+echo -e "<br>Remarks  : ${user}"
+echo -e "<br>IP/Host  : ${MYIP}"
+echo -e "<br>Address  : ${domain}"
+echo -e "<br>Port     : ${tr}"
+echo -e "<br>Key      : ${user}"
+echo -e "<br>Created  : $hariini"
+echo -e "<br>Expired  : $exp"
+echo -e "<br>=========================="
+echo -e "<br>Link TR  : ${trojanlink}"
+echo -e "<br>=========================="
+echo -e "<br>Script By Lakmal Sandaru"
+
